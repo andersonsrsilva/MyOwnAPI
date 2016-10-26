@@ -12,4 +12,7 @@ class Vehicle extends Model
 
     protected $hidden = ['serie'];
 
+    public function maker() {
+        return $this->belongsTo(Maker::class);
+    }
 }
