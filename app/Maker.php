@@ -10,6 +10,10 @@ class Maker extends Model
 
     protected $hidden = ['id', 'updated_at', 'created_at'];
 
+    public static function truncate()
+    {
+    }
+
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);
