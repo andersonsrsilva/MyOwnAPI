@@ -15,6 +15,8 @@ class CreateMakersTable extends Migration
     {
         Schema::create('makers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('phone');
             $table->timestamps();
         });
     }

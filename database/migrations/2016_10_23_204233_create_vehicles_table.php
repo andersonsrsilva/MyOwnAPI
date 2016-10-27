@@ -14,7 +14,13 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('serie');
+            $table->string('color');
+            $table->integer('power');
+            $table->float('capaticy');
+            $table->float('speed');
+            $table->integer('maker_id')->unsigned();
+            $table->foreign('maker_id')->references('id')->on('makers');
             $table->timestamps();
         });
     }
