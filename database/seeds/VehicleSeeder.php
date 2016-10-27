@@ -24,8 +24,8 @@ class VehicleSeeder extends Seeder
             $vehicle[] = [
                 'color' => $faker->safeColorName(),
                 'power' => $faker->randomNumber(),
-                'capacity' => $faker->randomFloat(),
-                'speed' => $faker->randomFloat(),
+                'capacity' => $faker->randomFloat(4),
+                'speed' => $faker->randomFloat(2),
                 'maker_id' => $faker->numberBetween(1, 5)
             ];
         }
