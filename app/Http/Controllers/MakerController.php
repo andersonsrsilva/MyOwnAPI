@@ -22,6 +22,6 @@ class MakerController extends Controller
             return response()->json(['message' => 'This maker does not exist', 'code' => 404], 404);
         }
 
-        return response()->json($makers, 200);
+        return response()->json(['data' => $makers], 200);
     }
 }
