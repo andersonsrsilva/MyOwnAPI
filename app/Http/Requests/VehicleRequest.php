@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MakerRequest extends FormRequest
+class VehicleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,15 @@ class MakerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'phone' => 'required'
+            'color' => 'required',
+            'power' => 'required',
+            'capacity' => 'required',
+            'speed' => 'required',
         ];
     }
 
     public function response(array $errors)
     {
-        return response()->json(['message' => 'You should specify the name and the phone the new maker', 'code' => 422], 422);
+        return response()->json(['message' => $errors, 'code' => 422], 422);
     }
 }
