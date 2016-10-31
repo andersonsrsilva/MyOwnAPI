@@ -32,7 +32,7 @@ class MakerController extends Controller
 
         Maker::create($values);
 
-        response()->json(['message' => 'Maker correctly added'], 201);
+        return response()->json(['message' => 'Maker correctly added'], 201);
 
     }
 
