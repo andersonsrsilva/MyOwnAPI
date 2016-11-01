@@ -31,6 +31,6 @@ class MakerRequest extends FormRequest
 
     public function response(array $errors)
     {
-        return response()->json(['message' => 'You should specify the name and the phone the new maker', 'code' => 422], 422);
+        return response()->json(['message' => $errors, 'code' => 422], 422);
     }
 }

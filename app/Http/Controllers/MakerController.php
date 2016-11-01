@@ -17,13 +17,13 @@ class MakerController extends Controller
 
     public function show($id)
     {
-        $makers = Maker::find($id);
+        $maker = Maker::find($id);
 
-        if (!$makers) {
+        if (!$maker) {
             return response()->json(['message' => 'This maker does not exist', 'code' => 404], 404);
         }
 
-        return response()->json(['data' => $makers], 200);
+        return response()->json(['data' => $maker], 200);
     }
 
     public function store(MakerRequest $request)
@@ -36,4 +36,41 @@ class MakerController extends Controller
 
     }
 
+    public function update(MakerRequest $request, $id)
+    {
+        $maker = Maker::find($id);
+
+        if (!$maker) {
+            return response()->json(['message' => 'This maker does not exist', 'code' => 404], 404);
+        }
+
+        $name  = $request->get('name');
+        $phone = $request->get('phone');
+
+        $maker->name = $name;
+        $maker->phone = $phone;
+
+        $maker->save();
+
+        return response()->json(['massage' => 'The maker has been updated'], 200);
+    }
+
+    public function destroy($id)
+    {
+        $maker = Maker::find($id);
+
+        if (!$maker) {
+            return response()->json(['message' => 'This maker does not exist', 'code' => 404], 404);
+        }
+
+        $vehicle = $maker->vehicles;
+
+        if (!$vehicle) {
+            return response()->json(['message' => 'This vehicle does not exist', 'code' => 404], 404);
+        }
+
+        $maker->delete();
+
+        return response()->json(['massage' => 'The maker has been deletes'], 200);
+    }
 }
