@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class MakerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.basic.once', ['except' => ['show']]);
+    }
+
     public function index()
     {
         $makers = Maker::all();
@@ -44,7 +49,7 @@ class MakerController extends Controller
             return response()->json(['message' => 'This maker does not exist', 'code' => 404], 404);
         }
 
-        $name  = $request->get('name');
+        $name = $request->get('name');
         $phone = $request->get('phone');
 
         $maker->name = $name;
