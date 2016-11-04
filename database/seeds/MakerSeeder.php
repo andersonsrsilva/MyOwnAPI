@@ -17,9 +17,9 @@ class MakerSeeder extends Seeder
 
         $faker = Faker::create();
 
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             Maker::create([
-                'name' => $faker->word(),
+                'name' => $faker->name(),
                 'phone' => $faker->randomNumber(5),
             ]);
         }

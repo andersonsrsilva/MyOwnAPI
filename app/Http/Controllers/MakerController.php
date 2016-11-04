@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MakerRequest;
 use App\Maker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MakerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.basic.once', ['except' => ['show']]);
+        $this->middleware('auth.basic', ['except' => ['index', 'show']]);
     }
 
     public function index()
     {
-        $makers = Maker::all();
+        $makers = Cache::remember('makers', 15/60, function() {
+            return  Maker::simplePaginate(5);
+        });
 
-        return response()->json($makers, 200);
+        return response()->json(['previous' =>  $makers->previousPageUrl(), 'next' => $makers->nextPageUrl(), 'data' => $makers->items()], 200);
     }
 
     public function show($id)

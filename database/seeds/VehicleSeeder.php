@@ -20,12 +20,12 @@ class VehicleSeeder extends Seeder
         $faker = Faker::create();
         $vehicle = [];
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 500; $i++) {
             $vehicle[] = [
                 'color' => $faker->safeColorName(),
                 'power' => $faker->randomNumber(),
-                'capacity' => $faker->randomFloat(4),
-                'speed' => $faker->randomFloat(2),
+                'capacity' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 20),
+                'speed' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 200),
                 'maker_id' => $faker->numberBetween(1, 5)
             ];
         }
