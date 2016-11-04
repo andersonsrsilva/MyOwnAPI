@@ -8,9 +8,9 @@ class Vehicle extends Model
 {
     protected $primaryKey = 'serie';
 
-    protected $fillable = ['serie', 'color', 'power', 'capacity', 'speed'];
+    protected $fillable = ['color', 'power', 'capacity', 'speed', 'maker_id'];
 
-    protected $hidden = ['serie'];
+    protected $hidden = ['created_at', 'updated_at', 'maker_id'];
 
     public function maker() {
         return $this->belongsTo(Maker::class);
