@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof NotFoundHttpException) {
+            return response()->json(['message' => 'Bad request, please verify your request route', 'code' => 400], 400);
+        } else {
+            return response()->json(['message' => 'Unexpected error, try again later', 'code' => 500], 500);
+        }
+
         return parent::render($request, $exception);
     }
 
